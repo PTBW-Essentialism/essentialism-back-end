@@ -14,7 +14,7 @@ router.post("/register", async (req, res, next) => {
                 message: "That username has already been taken",
             });
         }
-        res.status(201).json(await User.add(req.body));
+        res.status(201).json(await Users.add(req.body));
     } catch (err) {
         next(err);
     }
@@ -44,7 +44,6 @@ router.post("/login", async (req, res, next) => {
 
         const tokenPayload = {
             userId: user.userId,
-            token: token,
         };
 
         token = jwt.sign(tokenPayload, "secret is safe", {
