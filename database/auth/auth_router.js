@@ -44,7 +44,6 @@ router.post("/login", async (req, res, next) => {
 
         const tokenPayload = {
             userId: user.userId,
-            token: token,
         };
 
         token = jwt.sign(tokenPayload, "secret is safe", {
