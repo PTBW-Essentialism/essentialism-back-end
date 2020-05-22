@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-function restrict(role) {
+function restrict() {
     return async (req, res, next) => {
         const authError = {
             message: "You are not authorized to view this content",
@@ -9,7 +9,7 @@ function restrict(role) {
         try {
             const token = req.header.authorization;
             if (!token) {
-                res.status(401).json(authError);
+                req.status(401).json(authError);
             }
 
             jwt.verify(token, process.env.JWT_SECRET, (err, decodedPayload) => {

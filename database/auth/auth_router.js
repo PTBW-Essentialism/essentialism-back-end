@@ -3,12 +3,15 @@ const bcrypt = require("bcryptjs");
 const Users = require("../users/users_model");
 const jwt = require("jsonwebtoken");
 
-const router = express.Router();
+const router = express.Router({
+    mergeParams: true,
+});
 
 router.post("/register", async (req, res, next) => {
     try {
         const { username } = req.body;
         const user = await Users.findBy({ username }).first();
+
         if (user) {
             return res.status(409).json({
                 message: "That username has already been taken",
