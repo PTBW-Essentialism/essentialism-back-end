@@ -4,7 +4,7 @@ Essentialism
 
 /-----------------------------/Auth Routes/---------------------------/
 
-REGISTER METHOD url:
+REGISTER METHOD url: /auth/register
 
 Example Object
 
