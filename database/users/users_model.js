@@ -12,11 +12,16 @@ function find() {
 }
 
 function findBy(filter) {
-    return db("users").select("id", "username", "password").where(filter);
+    return db("users")
+        .select("id", "username", "password", "email", "firstName", "lastName")
+        .where(filter);
 }
 
 function findById(id) {
-    return db("users").where({ id }).select("id", "username").first();
+    return db("users")
+        .where({ id })
+        .select("id", "username", "password", "email", "firstName", "lastName")
+        .first();
 }
 
 module.exports = {
