@@ -4,6 +4,7 @@ const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const authRouter = require("./database/auth/auth_router");
 const userRouter = require("./database/users/users_router");
+require("dotenv").config();
 
 const server = express();
 const port = process.env.PORT || 5000;

@@ -1,6 +1,14 @@
 exports.seed = async function (knex) {
     await knex("Values").insert([
         {
+            name: "Career",
+            description: "Any task related to work, or financial gain",
+        },
+        {
+            name: "Education",
+            description: "Any task that involves learning, or school-work",
+        },
+        {
             name: "Personal Care",
             description:
                 "Any task that involves taking care of oneself, like manicure, hair appointments, etc",
@@ -24,21 +32,8 @@ exports.seed = async function (knex) {
                 "Any task involving community outreach, or charitable work",
         },
         {
-            name: "Financial",
-            description: "Any task related to work, or financial gain",
-        },
-        {
             name: "Cleanliness",
             description: "Any task that involves cleaning, or chores",
         },
     ]);
 };
-
-// Wellbeing
-// Quality Time
-// Spirituality
-// Family
-// Charity
-// Financial/Work`
-// Emotional/mental;
-// cleanliness
