@@ -1,7 +1,7 @@
 exports.seed = async function (knex) {
     await knex("Initiatives").insert([
         {
-            iNname: "Go to school",
+            iName: "Go to school",
             iDescription: "I'm going to school!",
             dueDate: "01-01-21",
             userId: 1,
@@ -10,7 +10,7 @@ exports.seed = async function (knex) {
             repeatable: true,
         },
         {
-            iNname: "Go to school",
+            iName: "Go to school",
             iDescription: "I'm going to school!",
             dueDate: "01-01-21",
             userId: 2,
@@ -19,7 +19,7 @@ exports.seed = async function (knex) {
             repeatable: true,
         },
         {
-            iNname: "Go to school",
+            iName: "Go to school",
             iDescription: "I'm going to school!",
             dueDate: "01-01-21",
             userId: 4,
@@ -28,7 +28,7 @@ exports.seed = async function (knex) {
             repeatable: true,
         },
         {
-            iNname: "Go to school",
+            iName: "Go to school",
             iDescription: "I'm going to school!",
             dueDate: "01-01-21",
             userId: 4,

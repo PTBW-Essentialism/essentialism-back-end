@@ -14,7 +14,7 @@ router.post("/register", async (req, res, next) => {
                 message: "That username has already been taken",
             });
         }
-        res.status(201).json(await User.add(req.body));
+        res.status(201).json(await Users.add(req.body));
     } catch (err) {
         next(err);
     }

@@ -25,8 +25,8 @@ exports.up = async function (knex) {
     });
     await knex.schema.createTable("UserValues", (table) => {
         table.increments("id");
-        table.increments("userId").references("id").inTable("Users");
-        table.increments("valuesId").references("id").inTAble("Values");
+        table.integer("userId").references("id").inTable("Users");
+        table.integer("valuesId").references("id").inTable("Values");
     });
 };
 
