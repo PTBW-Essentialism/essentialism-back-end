@@ -24,7 +24,7 @@ Example Object
 
 example RESPONSE from creation example
 
-    (201) Successfully Created
+(201) Successfully Created
 
         {
             "id": 2,
@@ -35,13 +35,13 @@ example RESPONSE from creation example
             "lastName": "Batson",
         }
 
-    (500) Server Error
+(500) Server Error
 
         {
              message: Whoops, It looks like there was an error with the server
         }
 
-    (409) Conflict
+(409) Conflict
 
         {
              message: That username has already been taken
@@ -62,7 +62,7 @@ LOGIN URL: https://essentialapi.herokuapp.com/auth/login
             "password": "12b3s"
         }
 
-    RESPONSE 200 success
+RESPONSE 200 success
 
 Example RESPONSE from logging in
 
@@ -75,13 +75,13 @@ Example RESPONSE from logging in
             "lastName": "Batson",
         }
 
-    (401) Unauthorized
+(401) Unauthorized
 
         {
             message: "Invalid Credentials"
         }
 
-    (500) Server Error
+(500) Server Error
 
         {
             message: Whoops, It looks like there was an error with the server
