@@ -41,7 +41,7 @@ example RESPONSE from creation example
              message: Whoops, It looks like there was an error with the server
         }
 
-        (409) Conflict
+    (409) Conflict
 
         {
              message: That username has already been taken
