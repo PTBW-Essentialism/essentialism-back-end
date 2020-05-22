@@ -6,19 +6,19 @@ Essentialism
 
 REGISTER METHOD url: https://essentialapi.herokuapp.com/auth/register
 
-.POST ONLY
+    .POST ONLY
 
 Example Object
 
     BODY
 
-{
-"username": "ShawnB84",
-"password": "12b3s",
-"email": "ShawnBatson@example.com",
-"firstName: "Shawn",
-"lastName": "Batson",
-}
+        {
+            "username": "ShawnB84",
+            "password": "12b3s",
+            "email": "ShawnBatson@example.com",
+            "firstName: "Shawn",
+            "lastName": "Batson",
+        }
 
 /----------------------------------------/
 
@@ -26,25 +26,25 @@ example RESPONSE from creation example
 
     (201) Successfully Created
 
-    {
-    "id": 2,
-    "username": "ShawnB84",
-    "password": "12b3s",
-    "email": "ShawnBatson@example.com",
-    "firstName: "Shawn",
-    "lastName": "Batson",
-    }
+        {
+            "id": 2,
+            "username": "ShawnB84",
+            "password": "12b3s",
+            "email": "ShawnBatson@example.com",
+            "firstName: "Shawn",
+            "lastName": "Batson",
+        }
 
     (500) Server Error
 
         {
-        message: Whoops, It looks like there was an error with the server
+             message: Whoops, It looks like there was an error with the server
         }
 
         (409) Conflict
 
         {
-        message: That username has already been taken
+             message: That username has already been taken
         }
 
 /----------Login--------------/
@@ -57,34 +57,34 @@ LOGIN URL: https://essentialapi.herokuapp.com/auth/login
 
     BODY
 
-{
-"username": "ShawnB84",
-"password": "12b3s"
-}
+        {
+            "username": "ShawnB84",
+            "password": "12b3s"
+        }
 
     RESPONSE 200 success
 
 Example RESPONSE from logging in
 
-    {
-        "id": 1,
-        "username": "ShawnB84",
-        "password": "20QI6NsnP776%6MqEmEsUI922YTxacnMM9M"
-        "email": "ShawnBatson@example.com",
-        "firstName: "Shawn",
-         "lastName": "Batson",
-    }
+        {
+            "id": 1,
+            "username": "ShawnB84",
+            "password": "20QI6NsnP776%6MqEmEsUI922YTxacnMM9M"
+            "email": "ShawnBatson@example.com",
+            "firstName: "Shawn",
+            "lastName": "Batson",
+        }
 
     (401) Unauthorized
 
-    {
-        message: "Invalid Credentials"
-    }
+        {
+            message: "Invalid Credentials"
+        }
 
     (500) Server Error
 
-    {
-        message: Whoops, It looks like there was an error with the server
-    }
+        {
+            message: Whoops, It looks like there was an error with the server
+        }
 
 /---------------------- -----------------------------------/
