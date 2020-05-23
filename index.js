@@ -4,6 +4,7 @@ const helmet = require("helmet");
 const cookieParser = require("cookie-parser");
 const authRouter = require("./database/auth/auth_router");
 const userRouter = require("./database/users/users_router");
+const valuesRouter = require("./database/values/values_router");
 require("dotenv").config();
 
 const server = express();
@@ -16,6 +17,7 @@ server.use(cookieParser());
 
 server.use("/auth", authRouter);
 server.use("/users", userRouter);
+server.use("/values", valuesRouter);
 
 server.get("/", (req, res, next) => {
     res.json({
