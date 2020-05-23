@@ -100,3 +100,9 @@ Example object
             "name": "Career",
             "description": "Any task related to work, or financial gain"
         },
+
+/------------------------User Values---------------------------------------/
+
+USER/VALUES URL: https://essentialapi.herokuapp.com/users/:id/values
+
+/////////////// resource DATABASE, NODE API 3 GUIDED//////////////////////
