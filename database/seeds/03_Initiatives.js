@@ -31,7 +31,7 @@ exports.seed = async function (knex) {
             iName: "Go to school",
             iDescription: "I'm going to school!",
             dueDate: "01-01-21",
-            userId: 4,
+            userId: 5,
             userValuesId: 3,
             completed: false,
             repeatable: true,

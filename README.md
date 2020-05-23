@@ -87,4 +87,16 @@ Example RESPONSE from logging in
             message: Whoops, It looks like there was an error with the server
         }
 
-/---------------------- -----------------------------------/
+/---------------------- Values Routes -----------------------------------/
+
+VALUES URL: https://essentialapi.herokuapp.com/values
+
+    .GET ONLY
+
+Example object
+
+        {
+            "id": 1,
+            "name": "Career",
+            "description": "Any task related to work, or financial gain"
+        },
