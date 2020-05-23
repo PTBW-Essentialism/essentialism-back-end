@@ -1,5 +1,4 @@
 const express = require("express");
-const router = express.Router();
 const restrict = require("../auth/authenticate_middleware");
 const Users = require("../users/users_model");
 const Initiatives = require("../account_endpoints/dashboard_model");
@@ -14,7 +13,7 @@ router.get("/", restrict(), async (req, res, next) => {
     }
 });
 
-router.get("/:id", restrict(), validateUserID(), (req, res, next) => {
+router.get("/:id", validateUserID(), (req, res, next) => {
     try {
         res.status(200).json(req.user);
     } catch (err) {
@@ -22,7 +21,7 @@ router.get("/:id", restrict(), validateUserID(), (req, res, next) => {
     }
 });
 
-router.get("/:id/dashboard", restrict(), validateUserID(), (req, res, next) => {
+router.get("/:id/dashboard", validateUserID(), (req, res, next) => {
     try {
         Initiatives.findUserInitiatives(req.params.id);
     } catch (err) {
@@ -47,8 +46,7 @@ router.post(
 
 function validateUserID() {
     return (req, res, next) => {
-        users
-            .findById(req.params.id)
+        Users.findById(req.params.id)
             .then((user) => {
                 if (user) {
                     req.user = user;

@@ -46,15 +46,24 @@ router.post("/login", async (req, res, next) => {
         }
 
         const tokenPayload = {
-            userId: user.userId,
+            userId: user.id,
+            userRole: "user",
         };
 
-        token = jwt.sign(tokenPayload, "secret is safe", {
-            //for production, add env variable
+        token = jwt.sign(tokenPayload, process.env.JWT_SECRET, {
             expiresIn: "24h",
         });
 
-        res.json({ token: token, message: `Welcome ${user.username}` });
+        res.cookie(
+            "token",
+            jwt.sign(tokenPayload, process.env.JWT_SECRET, { expiresIn: "24h" })
+        );
+
+        res.json({
+            token: token,
+            userRole: user.role,
+            message: `Welcome ${user.username}!`,
+        });
     } catch (err) {
         next(err);
     }

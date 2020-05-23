@@ -7,13 +7,13 @@ function restrict() {
         };
 
         try {
-            const token = req.header.authorization;
+            const token = req.cookies.token;
             if (!token) {
-                req.status(401).json(authError);
+                res.status(401).json(authError);
             }
 
             jwt.verify(token, process.env.JWT_SECRET, (err, decodedPayload) => {
-                if (err) {
+                if (err || decodedPayload.userRole !== role) {
                     return res.status(401).json(authError);
                 }
 
