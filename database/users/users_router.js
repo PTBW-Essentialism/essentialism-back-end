@@ -2,7 +2,7 @@ const express = require("express");
 const restrict = require("../auth/authenticate_middleware");
 const restrictUser = require("../auth/user_middleware");
 const Users = require("../users/users_model");
-const Initiatives = require("../account_endpoints/dashboard_model");
+const Dashboard = require("../account_endpoints/dashboard_model");
 
 const router = express.Router({ mergeParams: true });
 
@@ -14,17 +14,17 @@ router.get("/", restrict(), async (req, res, next) => {
     }
 });
 
-router.get("/:id", restrict(), (req, res, next) => {
+router.get("/:id", restrict(), async (req, res, next) => {
     try {
-        res.status(200).json(req.user);
+        res.json(await Users.findById(req.params.id));
     } catch (err) {
         next(err);
     }
 });
 
-router.post("/:id/values", restrict(), (req, res, next) => {
+router.get("/:id/focus", restrict(), (req, res, next) => {
     try {
-        Initiatives.addUserValue(req.params.id)
+        Dashboard.findUserValues(req.params.id)
             .then((values) => {
                 res.status(200).json(values);
             })
@@ -36,9 +36,54 @@ router.post("/:id/values", restrict(), (req, res, next) => {
     }
 });
 
-router.get("/:id/dashboard", validateUserID(), (req, res, next) => {
+router.post("/:id/focus", (req, res, next) => {
     try {
-        Initiatives.findUserInitiatives(req.params.id)
+        const focusBody = req.body;
+        Dashboard.addUserValue(req.params.id, focusBody)
+            .then((values) => {
+                res.status(200).json(values);
+            })
+            .catch((err) => {
+                next(err);
+            });
+    } catch (err) {
+        next(err);
+    }
+});
+
+router.get("/:id/focus/:focusId", restrict(), (req, res, next) => {
+    try {
+        Dashboard.findUserValuesById(req.params.id, req.params.focusId)
+            .then((value) => {
+                res.status(200).json(value);
+            })
+            .catch((err) => {
+                next(err);
+            });
+    } catch (err) {
+        next(err);
+    }
+});
+
+router.delete("/:id/focus/:focusId", validateUserID(), (req, res, next) => {
+    try {
+        Dashboard.removeUserValues(req.params.id, req.params.focusId).then(
+            (del) => {
+                if (del) {
+                    res.status(200).json({ message: "Deleted Successfully" });
+                } else {
+                    res.status(404).json({ message: "Focus did not exist" });
+                }
+            }
+        );
+    } catch (err) {
+        next(err);
+    }
+});
+
+router.get("/:id/initiatives", validateUserID(), (req, res, next) => {
+    try {
+        Dashboard.findUserInitiatives(req.params.id)
             .then((initiatives) => {
                 res.status(200).json(initiatives);
             })
@@ -50,11 +95,41 @@ router.get("/:id/dashboard", validateUserID(), (req, res, next) => {
     }
 });
 
-router.post("/:id/dashboard", validateUserID(), (req, res, next) => {
+router.get("/:id/initiatives/:InId", validateUserID(), (req, res, next) => {
     try {
-        const initiativeData = req.body;
-        Initiatives.addInitiative(req.params.id, initiativeData);
+        Dashboard.findUserInitiativesById(req.params.id, req.params.InId)
+            .then((initiatives) => {
+                if (initiatives) {
+                    res.json(initiatives);
+                } else {
+                    res.status(404).json({
+                        message: "Initiative not found",
+                    });
+                }
+            })
+            .catch((err) => {
+                next(err);
+            });
+    } catch (err) {
+        next(err);
+    }
+});
+
+router.post("/:id/initiatives", validateUserID(), (req, res, next) => {
+    try {
+        const DashboardData = req.body;
+        Dashboard.addInitiative(req.params.id, DashboardData);
         res.status(201).json(`Your Initiative has been recorded`);
+    } catch (err) {
+        next(err);
+    }
+});
+
+router.delete("/:id/initiatives/:InId", validateUserID(), (req, res, next) => {
+    try {
+        Dashboard.removeIniative(req.params.InId).then(
+            res.status(200).json({ message: "Successfully deleted" })
+        );
     } catch (err) {
         next(err);
     }

@@ -103,6 +103,25 @@ Example object
 
 /------------------------User Values---------------------------------------/
 
-USER/VALUES URL: https://essentialapi.herokuapp.com/users/:id/values
+USER ENDPOINT URL: https://essentialapi.herokuapp.com/users
+
+    .GET only.  This pulls ALL of the users.
+
+NO EXAMPLE. Should be a list
+
+User/:ID ENDPOINT URL: https://essentialapi.herokuapp.com/users/${id} or /1
+
+Example object response:
+
+        {
+            "id": 1,
+            "username": "ShawnB84",
+            "password": "20QI6NsnP776%6MqEmEsUI922YTxacnMM9M"
+            "email": "ShawnBatson@example.com",
+            "firstName: "Shawn",
+            "lastName": "Batson",
+        },
+
+USER/FOCUS URL: https://essentialapi.herokuapp.com/users/:id/focus
 
 /////////////// resource DATABASE, NODE API 3 GUIDED//////////////////////
