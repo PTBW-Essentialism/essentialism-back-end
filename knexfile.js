@@ -1,5 +1,3 @@
-// require("dotenv").config(); //delete for production
-
 module.exports = {
     development: {
         client: "pg",
