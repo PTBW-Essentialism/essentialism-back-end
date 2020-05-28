@@ -37,7 +37,7 @@ router.get("/:id/focus", restrict(), (req, res, next) => {
 
 router.post("/:id/focus", (req, res, next) => {
     try {
-        const focusBody = req.body;
+        const focusBody = req.body.id;
         Dashboard.addUserValue(req.params.id, focusBody)
             .then((values) => {
                 res.status(200).json(values);
