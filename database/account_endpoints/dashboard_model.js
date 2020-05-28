@@ -29,11 +29,8 @@ function findUserValuesById(id, valuesId) {
     );
 }
 
-function removeUserValues(id, valuesId) {
-    return db("uservalues")
-        .where("uv.userId", id)
-        .where("uv.id", valuesId)
-        .del();
+function removeUserValues(valuesId) {
+    return db("uservalues").where("uv.id", valuesId).del();
 }
 
 function findUserInitiativesById(userId, InId) {
@@ -71,8 +68,8 @@ async function addUserValue(userId, valuesId) {
     return findUserValues(userId, id);
 }
 
-function removeInitiative(userId, InId) {
-    return db("initiative").where("i.userId", userId).where("i.id", InId).del();
+function removeInitiative(InId) {
+    return db("initiative").where("i.id", InId).del();
 }
 
 module.exports = {
