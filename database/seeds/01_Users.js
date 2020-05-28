@@ -6,6 +6,7 @@ exports.seed = async function (knex) {
             email: "Shawn@Shawn.org",
             firstName: "Shawn",
             lastName: "Batson",
+            role: "admin",
         },
         {
             username: "Austin", //2
@@ -13,6 +14,7 @@ exports.seed = async function (knex) {
             email: "Austin@Austin.org",
             firstName: "Austin",
             lastName: "Kelsay",
+            role: "admin",
         },
         {
             username: "Tremain", //3
@@ -20,6 +22,7 @@ exports.seed = async function (knex) {
             email: "Tremain@Tremain.org",
             firstName: "Tremain",
             lastName: "Hebert",
+            role: "admin",
         },
         {
             username: "Keenan", //3
@@ -27,6 +30,7 @@ exports.seed = async function (knex) {
             email: "Keenan@Keenan.org",
             firstName: "Keenan",
             lastName: "hallas",
+            role: "admin",
         },
     ]);
 };
