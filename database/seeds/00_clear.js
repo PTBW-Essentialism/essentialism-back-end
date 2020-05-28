@@ -1,9 +1,11 @@
 exports.seed = async function (knex) {
     // if (process.env.NODE_ENV != "production") {
+    await knex.raw("SET foreign_key_checks = 0");
     await knex("Initiatives").truncate();
     await knex("UserValues").truncate();
     await knex("Values").truncate();
     await knex("Users").truncate();
+    await knex.raw("SET foreign_key_checks = 1");
 
     // }
 };
