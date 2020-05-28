@@ -13,7 +13,7 @@ function restrict(role = "user") {
             }
 
             jwt.verify(token, process.env.JWT_SECRET, (err, decodedPayload) => {
-                if (err || decodedPayload.userRole !== user.role) {
+                if (err) {
                     return res.status(401).json(authError);
                 }
 
