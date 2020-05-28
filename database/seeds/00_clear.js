@@ -1,6 +1,6 @@
 exports.seed = async function (knex) {
-    await knex("UserValues").truncate();
-    await knex("Initiatives").truncate();
-    await knex("Values").truncate();
-    await knex("Users").truncate();
+    await knex.raw("TRUNCATE TABLE initiatives CASCADE");
+    await knex.raw("TRUNCATE TABLE uservalues CASCADE");
+    await knex.raw("TRUNCATE TABLE values CASCADE");
+    await knex.raw("TRUNCATE TABLE users CASCADE");
 };

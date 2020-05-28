@@ -1,6 +1,5 @@
 const express = require("express");
 const restrict = require("../auth/authenticate_middleware");
-const restrictUser = require("../auth/user_middleware");
 const Users = require("../users/users_model");
 const Dashboard = require("../account_endpoints/dashboard_model");
 
@@ -127,7 +126,7 @@ router.post("/:id/initiatives", validateUserID(), (req, res, next) => {
 
 router.delete("/:id/initiatives/:InId", validateUserID(), (req, res, next) => {
     try {
-        Dashboard.removeIniative(req.params.InId).then(
+        Dashboard.removeInitiative(req.params.InId).then(
             res.status(200).json({ message: "Successfully deleted" })
         );
     } catch (err) {

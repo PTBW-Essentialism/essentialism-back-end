@@ -1,5 +1,5 @@
 exports.seed = async function (knex) {
-    await knex("Values").insert([
+    await knex("values").insert([
         {
             name: "Career",
             description: "Any task related to work, or financial gain",
