@@ -120,9 +120,9 @@ router.post("/:id/initiatives", validateUserID(), (req, res, next) => {
 
 router.delete("/:id/initiatives/:InId", validateUserID(), (req, res, next) => {
     try {
-        Dashboard.removeInitiative(req.params.InId).then(
-            res.status(200).json({ message: "Successfully deleted" })
-        );
+        Dashboard.removeInitiative(req.params.InId).then((del) => {
+            res.status(200).json({ message: "Deleted successfully" });
+        });
     } catch (err) {
         next(err);
     }

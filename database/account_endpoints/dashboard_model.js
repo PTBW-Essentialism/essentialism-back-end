@@ -32,6 +32,9 @@ function findUserValuesById(id, valuesId) {
 function removeUserValues(valuesId) {
     return db("uservalues as uv").where("uv.id", valuesId).del();
 }
+function removeInitiative(InId) {
+    return db("initiative as i").where("i.id", InId).del();
+}
 
 function findUserInitiativesById(userId, InId) {
     return db("initiatives as i")
@@ -66,10 +69,6 @@ async function addUserValue(userId, valuesId) {
     const data = { userId: userId, ...valuesId };
     const [id] = await db("uservalues").insert(data, "id");
     return findUserValues(userId, id);
-}
-
-function removeInitiative(InId) {
-    return db("initiative as i").where("i.id", InId).del();
 }
 
 module.exports = {
