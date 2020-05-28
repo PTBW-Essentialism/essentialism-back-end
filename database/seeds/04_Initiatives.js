@@ -1,5 +1,5 @@
 exports.seed = async function (knex) {
-    await knex("Initiatives").insert([
+    await knex("initiatives").insert([
         {
             iName: "Go to school",
             iDescription: "I'm going to school!",
