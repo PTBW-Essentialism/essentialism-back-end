@@ -66,9 +66,9 @@ router.get("/:id/focus/:focusId", restrict(), (req, res, next) => {
 
 router.delete("/:id/focus/:focusId", validateUserID(), (req, res, next) => {
     try {
-        Dashboard.removeUserValues(
-            res.status(200).json({ message: "Deleted successfully" })
-        );
+        Dashboard.removeUserValues(req.params.focusId).then((del) => {
+            res.status(200).json({ message: "Deleted successfully" });
+        });
     } catch (err) {
         next(err);
     }
