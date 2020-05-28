@@ -35,7 +35,7 @@ exports.up = async function (knex) {
             .integer("userId")
             .references("id")
             .inTable("Users")
-            .onDelete("cascase");
+            .onDelete("cascade");
         table
             .integer("userValuesId")
             .references("id")
