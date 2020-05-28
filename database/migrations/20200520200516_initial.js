@@ -51,8 +51,8 @@ exports.up = async function (knex) {
 };
 
 exports.down = async function (knex) {
-    await knex.schema.dropTableIfExists("Initiatives");
-    await knex.schema.dropTableIfExists("UserValues");
-    await knex.schema.dropTableIfExists("Users");
-    await knex.schema.dropTableIfExists("Values");
+    await knex.schema.dropTableIfExists("initiatives");
+    await knex.schema.dropTableIfExists("uservalues");
+    await knex.schema.dropTableIfExists("users");
+    await knex.schema.dropTableIfExists("values");
 };
