@@ -32,6 +32,7 @@ function findUserInitiativesById(id, userId) {
         .where("i.userId", id)
         .where("i.id", userId)
         .select(
+            "i.id",
             "i.iName",
             "i.iDescription",
             "i.dueDate",
