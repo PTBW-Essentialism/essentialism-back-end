@@ -1,5 +1,5 @@
 exports.up = async function (knex) {
-    await knex.schema.createTable("Users", (table) => {
+    await knex.schema.createTable("users", (table) => {
         table.increments("id");
         table.text("username").unique().notNullable();
         table.text("password").notNullable();
@@ -7,28 +7,28 @@ exports.up = async function (knex) {
         table.text("firstName").notNullable();
         table.text("lastName").notNullable();
     });
-    await knex.schema.createTable("Values", (table) => {
+    await knex.schema.createTable("values", (table) => {
         table.increments("id");
         table.text("name").notNullable();
         table.text("description").notNullable();
     });
-    await knex.schema.createTable("UserValues", (table) => {
+    await knex.schema.createTable("uservalues", (table) => {
         table.increments("id");
         table
             .integer("userId")
             .references("id")
-            .inTable("Users")
+            .inTable("users")
             .onDelete("CASCADE")
             .onUpdate("CASCADE");
         table
             .integer("valuesId")
             .references("id")
-            .inTable("Values")
+            .inTable("values")
             .onDelete("CASCADE")
             .onUpdate("CASCADE");
     });
 
-    await knex.schema.createTable("Initiatives", (table) => {
+    await knex.schema.createTable("initiatives", (table) => {
         table.increments("id");
         table.text("iName").notNullable();
         table.text("iDescription");
@@ -36,13 +36,13 @@ exports.up = async function (knex) {
         table
             .integer("userId")
             .references("id")
-            .inTable("Users")
+            .inTable("users")
             .onDelete("CASCADE")
             .onUpdate("CASCADE");
         table
             .integer("userValuesId")
             .references("id")
-            .inTable("UserValues")
+            .inTable("uservalues")
             .onDelete("CASCADE")
             .onUpdate("CASCADE");
         table.boolean("completed").defaultTo(false);
@@ -51,8 +51,8 @@ exports.up = async function (knex) {
 };
 
 exports.down = async function (knex) {
-    await knex.schema.dropTableIfExists("Initiatives");
-    await knex.schema.dropTableIfExists("UserValues");
-    await knex.schema.dropTableIfExists("Users");
-    await knex.schema.dropTableIfExists("Values");
+    await knex.schema.dropTableIfExists("initiatives");
+    await knex.schema.dropTableIfExists("uservalues");
+    await knex.schema.dropTableIfExists("users");
+    await knex.schema.dropTableIfExists("values");
 };
