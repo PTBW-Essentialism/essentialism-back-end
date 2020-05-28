@@ -12,12 +12,6 @@ exports.seed = async function (knex) {
                 { userId: 3, valuesId: 1 },
                 { userId: 3, valuesId: 2 },
                 { userId: 3, valuesId: 3 },
-                { userId: 4, valuesId: 1 },
-                { userId: 4, valuesId: 2 },
-                { userId: 4, valuesId: 3 },
-                { userId: 5, valuesId: 1 },
-                { userId: 5, valuesId: 2 },
-                { userId: 5, valuesId: 3 },
             ])
         );
 };
