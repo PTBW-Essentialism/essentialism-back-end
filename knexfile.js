@@ -1,7 +1,13 @@
+// require("dotenv").config(); //delete for production
+
 module.exports = {
     development: {
         client: "pg",
-        connection: process.env.DATABASE_URL,
+        connection: {
+            database: "essentialtest",
+            user: "postgres",
+            password: process.env.PASSWORD,
+        },
         migrations: {
             directory: "./database/migrations",
             tableName: "dbmigrations",
@@ -27,23 +33,3 @@ module.exports = {
         seeds: { directory: "./database/seeds" },
     },
 };
-
-// development: {
-//     client: "sqlite3",
-//     connection: {
-//         filename: "./data/auth.db3",
-//     },
-//     useNullAsDefault: true,
-//     pool: {
-//         afterCreate: (conn, done) => {
-//             // runs after a connection is made to the sqlite engine
-//             conn.run("PRAGMA foreign_keys = ON", done)
-//         },
-//     },
-//     migrations: {
-//         directory: "./data/migrations",
-//     },
-//     seeds: {
-//         directory: "./data/seeds",
-//     },
-// },
