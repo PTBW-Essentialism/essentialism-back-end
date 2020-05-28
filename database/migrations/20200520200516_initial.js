@@ -14,8 +14,16 @@ exports.up = async function (knex) {
     });
     await knex.schema.createTable("UserValues", (table) => {
         table.increments("id");
-        table.integer("userId").references("id").inTable("Users");
-        table.integer("valuesId").references("id").inTable("Values");
+        table
+            .integer("userId")
+            .references("id")
+            .inTable("Users")
+            .onDelete("cascade");
+        table
+            .integer("valuesId")
+            .references("id")
+            .inTable("Values")
+            .onDelete("cascade");
     });
 
     await knex.schema.createTable("Initiatives", (table) => {
@@ -23,8 +31,16 @@ exports.up = async function (knex) {
         table.text("iName").notNullable();
         table.text("iDescription");
         table.text("dueDate");
-        table.integer("userId").references("id").inTable("Users");
-        table.integer("userValuesId").references("id").inTable("UserValues");
+        table
+            .integer("userId")
+            .references("id")
+            .inTable("Users")
+            .onDelete("cascase");
+        table
+            .integer("userValuesId")
+            .references("id")
+            .inTable("UserValues")
+            .onDelete("cascade");
         table.boolean("completed").defaultTo(false);
         table.boolean("repeatable").defaultTo(false);
     });
