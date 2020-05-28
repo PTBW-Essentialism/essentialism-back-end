@@ -27,6 +27,7 @@ exports.up = async function (knex) {
             .inTable("values")
             .onDelete("CASCADE")
             .onUpdate("CASCADE");
+        table.text("importance");
     });
 
     await knex.schema.createTable("initiatives", (table) => {

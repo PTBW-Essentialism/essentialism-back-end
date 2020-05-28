@@ -22,7 +22,7 @@ function findUserValuesById(id, valuesId) {
             // .where({ userId: id, valuesId: valuesId })
             .where("uv.userId", id)
             .where("uv.id", valuesId)
-            .select("uv.id", "uv.userId", "uv.valuesId")
+            .select("uv.id", "uv.userId", "uv.valuesId", "uv.importance")
             .join("values as v", "v.id", "uv.valuesId")
             .select("v.name", "v.description")
             .first()
