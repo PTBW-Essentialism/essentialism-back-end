@@ -30,7 +30,7 @@ function findUserValuesById(id, valuesId) {
 }
 
 function removeUserValues(valuesId) {
-    return db("uservalues").where("uv.id", valuesId).del();
+    return db("uservalues as uv").where("uv.id", valuesId).del();
 }
 
 function findUserInitiativesById(userId, InId) {
@@ -69,7 +69,7 @@ async function addUserValue(userId, valuesId) {
 }
 
 function removeInitiative(InId) {
-    return db("initiative").where("i.id", InId).del();
+    return db("initiative as i").where("i.id", InId).del();
 }
 
 module.exports = {
