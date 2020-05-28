@@ -35,7 +35,7 @@ async function addInitiative(userId, initiative) {
 
 async function addUserValue(userId, valuesId) {
     const data = { userId: userId, ...valuesId };
-    const [id] = await db("UserValues").insert(data).returning("id");
+    const [id] = await db("UserValues").insert(data, "id");
     return findUserValues(userId, id);
 }
 
