@@ -29,13 +29,13 @@ function findUserValues(userId) {
 
 async function addInitiative(userId, initiative) {
     const data = { userId: userId, ...initiative };
-    const [id] = await db("Initiatives").insert(data);
+    const [id] = await db("Initiatives").insert(data).returning("id");
     return findUserInitiatives(userId, id);
 }
 
 async function addUserValue(userId, valuesId) {
     const data = { userId: userId, ...valuesId };
-    const [id] = await db("UserValues").insert(data);
+    const [id] = await db("UserValues").insert(data).returning("id");
     return findUserValues(userId, id);
 }
 
