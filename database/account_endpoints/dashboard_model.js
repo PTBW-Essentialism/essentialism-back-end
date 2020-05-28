@@ -41,7 +41,7 @@ async function addUserValue(userId, valuesId) {
 
 function findUserValuesById(id, valuesId) {
     return db("UserValues as uv")
-        .where({ userId: id, id: valuesId })
+        .where({ userId: id, valuesId: valuesId })
         .select("uv.id", "uv.userId", "uv.valuesId")
         .join("Values as v", "v.id", "uv.valuesId")
         .select("v.name", "v.description")
