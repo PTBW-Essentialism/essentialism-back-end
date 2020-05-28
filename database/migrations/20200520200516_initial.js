@@ -12,6 +12,11 @@ exports.up = async function (knex) {
         table.text("name").notNullable();
         table.text("description").notNullable();
     });
+    await knex.schema.createTable("UserValues", (table) => {
+        table.increments("id");
+        table.integer("userId").references("id").inTable("Users");
+        table.integer("valuesId").references("id").inTable("Values");
+    });
 
     await knex.schema.createTable("Initiatives", (table) => {
         table.increments("id");
@@ -22,11 +27,6 @@ exports.up = async function (knex) {
         table.integer("userValuesId").references("id").inTable("UserValues");
         table.boolean("completed").defaultTo(false);
         table.boolean("repeatable").defaultTo(false);
-    });
-    await knex.schema.createTable("UserValues", (table) => {
-        table.increments("id");
-        table.integer("userId").references("id").inTable("Users");
-        table.integer("valuesId").references("id").inTable("Values");
     });
 };
 
