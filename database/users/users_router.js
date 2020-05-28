@@ -66,9 +66,13 @@ router.get("/:id/focus/:focusId", restrict(), (req, res, next) => {
 
 router.delete("/:id/focus/:focusId", validateUserID(), (req, res, next) => {
     try {
-        Dashboard.removeUserValues(req.params.focusId).then((del) => {
-            res.status(200).json({ message: "Deleted successfully" });
-        });
+        Dashboard.removeUserValues(req.params.focusId)
+            .then((del) => {
+                res.status(200).json({ message: "Deleted successfully" });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     } catch (err) {
         next(err);
     }
@@ -120,9 +124,13 @@ router.post("/:id/initiatives", validateUserID(), (req, res, next) => {
 
 router.delete("/:id/initiatives/:InId", validateUserID(), (req, res, next) => {
     try {
-        Dashboard.removeInitiative(req.params.InId).then((del) => {
-            res.status(200).json({ message: "Deleted successfully" });
-        });
+        Dashboard.removeInitiative(req.params.InId)
+            .then((del) => {
+                res.status(200).json({ message: "Deleted successfully" });
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     } catch (err) {
         next(err);
     }
