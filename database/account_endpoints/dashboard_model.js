@@ -15,9 +15,31 @@ function findUserInitiatives(userId) {
             )
     );
 }
-
-function findUserInitiativesById(userId, id) {
-    return db("initiatives as i").where({ id, userId: userId }).first();
+function findUserValuesById(id, valuesId) {
+    return (
+        db("uservalues as uv")
+            // .where({ userId: id, valuesId: valuesId })
+            .where("uv.userId", id)
+            .where("uv.id", valuesId)
+            .select("uv.id", "uv.userId", "uv.valuesId")
+            .join("values as v", "v.id", "uv.valuesId")
+            .select("v.name", "v.description")
+            .first()
+    );
+}
+function findUserInitiativesById(id, userId) {
+    return db("initiatives as i")
+        .where("i.userId", id)
+        .where("i.id", userId)
+        .select(
+            "i.iName",
+            "i.iDescription",
+            "i.dueDate",
+            "i.userValuesId",
+            "i.completed",
+            "i.repeatable"
+        )
+        .first();
 }
 function findUserValues(userId) {
     return db("uservalues as uv")
@@ -37,19 +59,6 @@ async function addUserValue(userId, valuesId) {
     const data = { userId: userId, ...valuesId };
     const [id] = await db("uservalues").insert(data, "id");
     return findUserValues(userId, id);
-}
-
-function findUserValuesById(id, valuesId) {
-    return (
-        db("uservalues as uv")
-            // .where({ userId: id, valuesId: valuesId })
-            .where("uv.userId", id)
-            .where("uv.id", valuesId)
-            .select("uv.id", "uv.userId", "uv.valuesId")
-            .join("values as v", "v.id", "uv.valuesId")
-            .select("v.name", "v.description")
-            .first()
-    );
 }
 
 function removeUserValues(id, valuesId) {
