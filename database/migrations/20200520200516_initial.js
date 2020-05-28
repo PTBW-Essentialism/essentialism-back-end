@@ -18,12 +18,14 @@ exports.up = async function (knex) {
             .integer("userId")
             .references("id")
             .inTable("Users")
-            .onDelete("cascade");
+            .onDelete("CASCADE")
+            .onUpdate("CASCADE");
         table
             .integer("valuesId")
             .references("id")
             .inTable("Values")
-            .onDelete("cascade");
+            .onDelete("CASCADE")
+            .onUpdate("CASCADE");
     });
 
     await knex.schema.createTable("Initiatives", (table) => {
@@ -35,12 +37,14 @@ exports.up = async function (knex) {
             .integer("userId")
             .references("id")
             .inTable("Users")
-            .onDelete("cascade");
+            .onDelete("CASCADE")
+            .onUpdate("CASCADE");
         table
             .integer("userValuesId")
             .references("id")
             .inTable("UserValues")
-            .onDelete("cascade");
+            .onDelete("CASCADE")
+            .onUpdate("CASCADE");
         table.boolean("completed").defaultTo(false);
         table.boolean("repeatable").defaultTo(false);
     });
