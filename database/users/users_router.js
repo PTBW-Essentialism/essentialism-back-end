@@ -1,6 +1,5 @@
 const express = require("express");
 const restrict = require("../auth/authenticate_middleware");
-const restrictUser = require("../auth/user_middleware");
 const Users = require("../users/users_model");
 const Dashboard = require("../account_endpoints/dashboard_model");
 
