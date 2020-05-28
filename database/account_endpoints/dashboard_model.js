@@ -36,7 +36,7 @@ async function addInitiative(userId, initiative) {
 async function addUserValue(userId, valuesId) {
     const data = { userId: userId, ...valuesId };
     const [id] = await db("uservalues").insert(data, "id");
-    return findUserValues(userId);
+    return findUserValues(userId, id);
 }
 
 function findUserValuesById(id, valuesId) {
@@ -68,4 +68,5 @@ module.exports = {
     findUserValues,
     findUserValuesById,
     findUserInitiativesById,
+    removeInitiative,
 };
