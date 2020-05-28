@@ -22,7 +22,7 @@ function findUserInitiativesById(userId, id) {
 function findUserValues(userId) {
     return db("UserValues as uv")
         .where({ userId: userId })
-        .select("uv.userId", "uv.valuesId")
+        .select("uv.id", "uv.userId", "uv.valuesId")
         .join("Values as v", "v.id", "uv.valuesId")
         .select("v.name", "v.description");
 }
@@ -36,16 +36,20 @@ async function addInitiative(userId, initiative) {
 async function addUserValue(userId, valuesId) {
     const data = { userId: userId, ...valuesId };
     const [id] = await db("UserValues").insert(data, "id");
-    return findUserValues(userId, id);
+    return findUserValues(userId);
 }
 
 function findUserValuesById(id, valuesId) {
-    return db("UserValues as uv")
-        .where({ userId: id, valuesId: valuesId })
-        .select("uv.id", "uv.userId", "uv.valuesId")
-        .join("Values as v", "v.id", "uv.valuesId")
-        .select("v.name", "v.description")
-        .first();
+    return (
+        db("UserValues as uv")
+            // .where({ userId: id, valuesId: valuesId })
+            .where("uv.userId", id)
+            .where("uv.id", valuesId)
+            .select("uv.id", "uv.userId", "uv.valuesId")
+            .join("Values as v", "v.id", "uv.valuesId")
+            .select("v.name", "v.description")
+            .first()
+    );
 }
 
 function removeUserValues(id, valuesId) {
