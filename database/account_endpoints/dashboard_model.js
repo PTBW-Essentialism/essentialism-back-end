@@ -6,6 +6,7 @@ function findUserInitiatives(userId) {
             // .join("Users as u", "i.userId", "u.id")
             .where({ userId: userId })
             .select(
+                "i.id",
                 "i.userId",
                 "i.iName",
                 "i.iDescription",
@@ -27,10 +28,10 @@ function findUserValuesById(id, valuesId) {
             .first()
     );
 }
-function findUserInitiativesById(userId, inId) {
+function findUserInitiativesById(userId, InId) {
     return db("initiatives as i")
-        .where("i.id", inId)
         .where("i.userId", userId)
+        .where("i.id", InId)
         .select(
             "i.id",
             "i.iName",
