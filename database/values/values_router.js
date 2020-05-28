@@ -5,7 +5,7 @@ const router = express.Router({ mergeParams: true });
 
 router.get("/", async (req, res, next) => {
     try {
-        res.json(await db("Values"));
+        res.json(await db("values"));
     } catch (err) {
         next(Err);
     }
