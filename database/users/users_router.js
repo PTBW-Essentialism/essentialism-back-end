@@ -6,6 +6,12 @@ const db = require("../config")
 
 const router = express.Router({ mergeParams: true });
 
+router.all("/", function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); //
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
+
 router.get("/", restrict(), async (req, res, next) => {
     try {
         res.json(await Users.find());
@@ -65,7 +71,7 @@ router.get("/:id/focus/:focusId", restrict(), (req, res, next) => {
     }
 });
 
-router.update("/:id/focus/:focusId", restrict(), (req, res, next) => {
+router.put("/:id/focus/:focusId", restrict(), (req, res, next) => {
     try{ 
         const payload = {
             importance: req.body.importance
@@ -74,7 +80,7 @@ router.update("/:id/focus/:focusId", restrict(), (req, res, next) => {
         await db("uservalues as uv").where("uv.id", req.params.focusId).update(payload)
 
         const updatedUserValues = await db("uservalues as uv").where("uv.id", req.params.id).first()
-        
+
         res.json(updatedUserValues)
     } catch(err) {
         next(err)
