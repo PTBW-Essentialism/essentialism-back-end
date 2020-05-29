@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 
-function restrict(role = "user") {
+function restrict() {
     return async (req, res, next) => {
         const authError = {
             message: "You are not authorized to view this content",
