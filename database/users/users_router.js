@@ -65,21 +65,21 @@ router.get("/:id/focus/:focusId", restrict(), (req, res, next) => {
     }
 });
 
-router.put("/:id/focus/:focusId", restrict(), (req, res, next) => {
-    try{
-        const payload = {
-            importance: req.body.importance
-        }
+// router.put("/:id/focus/:focusId", restrict(), (req, res, next) => {
+//     try{
+//         const payload = {
+//             importance: req.body.importance
+//         }
 
-        await db("uservalues as uv").where("uv.id", req.params.focusId).update(payload)
+//         await db("uservalues as uv").where("uv.id", req.params.focusId).update(payload)
 
-        const updatedUserValues = await db("uservalues as uv").where("uv.id", req.params.id).first()
+//         const updatedUserValues = await db("uservalues as uv").where("uv.id", req.params.id).first()
 
-        res.json(updatedUserValues)
-    } catch(err) {
-        next(err)
-    }
-})
+//         res.json(updatedUserValues)
+//     } catch(err) {
+//         next(err)
+//     }
+// })
 
 router.delete("/:id/focus/:focusId", validateUserID(), (req, res, next) => {
     try {
