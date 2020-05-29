@@ -2,6 +2,7 @@ const express = require("express");
 const restrict = require("../auth/authenticate_middleware");
 const Users = require("../users/users_model");
 const Dashboard = require("../account_endpoints/dashboard_model");
+const db = require("../config")
 
 const router = express.Router({ mergeParams: true });
 
@@ -63,6 +64,22 @@ router.get("/:id/focus/:focusId", restrict(), (req, res, next) => {
         next(err);
     }
 });
+
+router.update("/:id/focus/:focusId", restrict(), (req, res, next) => {
+    try{ 
+        const payload = {
+            importance: req.body.importance
+        }
+
+        await db("uservalues as uv").where("uv.id", req.params.focusId).update(payload)
+
+        const updatedUserValues = await db("uservalues as uv").where("uv.id", req.params.id).first()
+        
+        res.json(updatedUserValues)
+    } catch(err) {
+        next(err)
+    }
+})
 
 router.delete("/:id/focus/:focusId", validateUserID(), (req, res, next) => {
     try {
