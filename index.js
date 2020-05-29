@@ -9,12 +9,7 @@ const valuesRouter = require("./database/values/values_router");
 const server = express();
 const port = process.env.PORT || 5000;
 
-server.use(
-    cors({
-        credentials: true,
-        origin: "http://localhost:3000", //change this for production fully
-    })
-);
+server.use(cors());
 server.use(helmet());
 server.use(express.json());
 server.use(cookieParser());
@@ -22,15 +17,6 @@ server.use(cookieParser());
 server.use("/auth", authRouter);
 server.use("/users", userRouter);
 server.use("/values", valuesRouter);
-
-server.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
-});
 
 server.get("/", (req, res, next) => {
     res.json({
