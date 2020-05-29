@@ -54,7 +54,7 @@ function findUserInitiativesById(userId, InId) {
 function findUserValues(userId) {
     return db("uservalues as uv")
         .where({ userId: userId })
-        .select("uv.id", "uv.userId", "uv.valuesId")
+        .select("uv.id", "uv.userId", "uv.valuesId", "uv.importance")
         .join("values as v", "v.id", "uv.valuesId")
         .select("v.name", "v.description");
 }
