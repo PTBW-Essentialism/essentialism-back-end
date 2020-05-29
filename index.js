@@ -18,6 +18,15 @@ server.use("/auth", authRouter);
 server.use("/users", userRouter);
 server.use("/values", valuesRouter);
 
+server.use(function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+});
+
 server.get("/", (req, res, next) => {
     res.json({
         message: "Welcome to the Essentialism API",
