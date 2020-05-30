@@ -14,7 +14,7 @@ module.exports = {
     },
     testing: {
         client: "pg",
-        connection: process.env.DATABASE_URL_TEST,
+        connection: "postgres://postgres:password@localhost/essentialtest",
         migrations: {
             directory: "./database/migrations",
             tableName: "dbmigrations",
