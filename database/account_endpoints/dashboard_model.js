@@ -10,6 +10,7 @@ function findUserInitiatives(userId) {
                 "i.userId",
                 "i.iName",
                 "i.iDescription",
+                "i.userValuesId",
                 "i.dueDate",
                 "i.completed",
                 "i.repeatable"
